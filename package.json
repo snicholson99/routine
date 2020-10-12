@@ -2,7 +2,7 @@
   "name": "routine",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://snicholson99.github.io/my-task-list",
+  "homepage": "https://snicholson99.github.io/routine",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
