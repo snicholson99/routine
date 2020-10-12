@@ -45,7 +45,6 @@ p {
   .section-one {
     padding: 20px 0;
     min-height: unset;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 2;
@@ -55,5 +54,6 @@ p {
   .section-two {
     position: relative;
     z-index: 1;
+    left: 0;
   }
 }

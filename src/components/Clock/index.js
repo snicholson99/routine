@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import './style.css';
 
@@ -6,7 +7,7 @@ class Clock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: new Date().getHours() + ":" + new Date().getMinutes(),
+      time: moment().format("HH:mm"),
     };
   }
   componentDidMount() {
@@ -19,9 +20,8 @@ class Clock extends Component {
     clearInterval(this.intervalID);
   }
   tick() {
-    const today = new Date();
     this.setState({
-      time: today.getHours() + ":" + today.getMinutes()
+      time: moment().format("HH:mm")
     });
   }
   render() {
