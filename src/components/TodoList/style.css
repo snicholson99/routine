@@ -1,0 +1,50 @@
+.todo-list {
+  width: 80%;
+  max-width: 400px;
+}
+
+.todo-form {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.todo-input {
+  width: calc(80% - 10px);
+  padding: 6px 10px;
+  margin: 0;
+}
+
+.todo-submit {
+  width: calc(20% - 10px);
+  margin: 0;
+  padding: 6px 10px;
+}
+
+/* .task-list {
+} */
+
+.task {
+  padding: 20px;
+}
+
+.task:not(:last-child) {
+  border-bottom: 1px solid black;
+}
+
+.task-body {
+  font-size: 14px;
+}
+
+.task-options {
+  padding-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.task-option {
+  font-size: 10px;
+}
+
+.task-option:not(:last-child) {
+  padding-right: 6px;
+}
