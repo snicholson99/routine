@@ -9,21 +9,26 @@ class Schedule extends Component{
     super(props)
     this.state = {
       events: [],
-      loggedIn: null,
+      loggedIn: !!localStorage.getItem("calendarId"),
       calendarId: "",
     }
+  }
+
+  componentDidMount() {
+    this.getEvents();
   }
 
   getEvents() {
     let that = this;
     let maxEvents = 5;
+    const calendarId = localStorage.getItem("calendarId");
     const gapi = window.gapi;
     function start() {
       gapi.client.init({
         'apiKey': GOOGLE_API_KEY
       }).then(function() {
         return gapi.client.request({
-          'path': `https://www.googleapis.com/calendar/v3/calendars/${that.state.calendarId}/events?maxResults=${maxEvents}&orderBy=updated&timeMin=${moment().toISOString()}&timeMax=${moment()
+          'path': `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?maxResults=${maxEvents}&orderBy=updated&timeMin=${moment().toISOString()}&timeMax=${moment()
           .endOf("day")
           .toISOString()}`,
         })
@@ -38,12 +43,12 @@ class Schedule extends Component{
   }
 
   onCalendarIdInputChange(e) {
-    console.log(e.target.value);
     this.setState({ calendarId: e.target.value });
   }
 
   onFormSubmit(e) {
     e.preventDefault();
+    localStorage.setItem("calendarId", this.state.calendarId);
     this.setState({ loggedIn: true });
     this.getEvents();
   }
