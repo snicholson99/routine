@@ -52,8 +52,12 @@ class Schedule extends Component{
     if (this.state.loggedIn) {
       return (
         <div className="schedule">
-          <h2 className="schedule-heading">Upcoming meetings</h2>
-          {this.state.events.map((event, i) => (
+          {this.state.events.length > 0 ? (
+            <h2 className="schedule-heading">Upcoming meetings</h2>
+            ) : (
+            <h2 className="schedule-heading no-upcoming">No Upcoming meetings</h2>
+          )}
+          {this.state.events.length > 0 && this.state.events.map((event, i) => (
             <p key={i}>{event.summary} at {moment(event.start.dateTime).format('HH:mm')}</p>
           ))}
         </div>
