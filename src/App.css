@@ -11,7 +11,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px 0;
 }
 
 .section-one {
@@ -41,6 +40,7 @@ p {
   .section {
     width: 100%;
     position: relative;
+    padding: 30px 0;
   }
   .section-one {
     padding: 20px 0;
