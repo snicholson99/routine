@@ -63,7 +63,7 @@ class Schedule extends Component{
             <h2 className="schedule-heading no-upcoming">No Upcoming meetings</h2>
           )}
           {this.state.events.length > 0 && this.state.events.map((event, i) => (
-            <p key={i}>{event.summary} at {moment(event.start.dateTime).format('HH:mm')}</p>
+            <p key={i}>{event.summary} at {event.start && event.start.dateTime && moment(event.start.dateTime).format('HH:mm')}</p>
           ))}
         </div>
       );
