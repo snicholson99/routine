@@ -20,16 +20,28 @@
   padding: 6px 10px;
 }
 
+.task-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 .task {
   padding: 20px;
+  box-shadow: 2px 2px 0px grey;
 }
 
 .task:not(:last-child) {
   border-bottom: 1px solid black;
 }
 
+.task-main {
+  display: flex;
+  align-items: baseline;
+}
+
 .task-body {
   font-size: 14px;
+  padding: 10px;
 }
 
 .task-options {

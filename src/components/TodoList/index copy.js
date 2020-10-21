@@ -1,22 +1,5 @@
 import React, { Component } from "react";
-import arrayMove from 'array-move';
-import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
-
 import "./style.css";
-
-const DragHandle = sortableHandle(() => <span>::</span>);
-
-const SortableItem = sortableElement(({value}) => <li>{value}</li>);
-
-const SortableList = sortableContainer(({items}) => {
-  return (
-    <ul>
-      {items.map((value, index) => (
-        <SortableItem key={`item-${index}`} index={index} value={value} />
-      ))}
-    </ul>
-  );
-});
 
 class TodoList extends Component {
   constructor(props) {
@@ -31,7 +14,6 @@ class TodoList extends Component {
   // on load get the task list
   componentDidMount = () => {
     this.getTasks();
-    this.taskInput.focus();
   };
 
   onChange = event => {
@@ -71,7 +53,6 @@ class TodoList extends Component {
 
       // refresh the tasks
       this.getTasks();
-      this.taskInput.focus();
     }
   };
 
@@ -112,18 +93,17 @@ class TodoList extends Component {
           }
           return (
             <div key={index} className="task" style={cardStyle}>
-              <div className="task-main">
-                <DragHandle />
+              <div>
                 <p className="task-body" style={taskComplete}>{item.task}</p>
-              </div>
 
-              <div className="task-options">
-                {item.status ? (
-                  <p className="task-option" onClick={() => this.undoTask(index)}>Undo</p>
-                ):(
-                  <p className="task-option" onClick={() => this.updateTask(index)}>Done</p>
-                )}
-                <p className="task-option" onClick={() => this.deleteTask(index)}>Delete</p>
+                <div className="task-options">
+                  {item.status ? (
+                    <p className="task-option" onClick={() => this.undoTask(index)}>Undo</p>
+                  ):(
+                    <p className="task-option" onClick={() => this.updateTask(index)}>Done</p>
+                  )}
+                  <p className="task-option" onClick={() => this.deleteTask(index)}>Delete</p>
+                </div>
               </div>
             </div>
           );
@@ -168,20 +148,6 @@ class TodoList extends Component {
     this.getTasks();
   };
 
-  onSortEnd = ({oldIndex, newIndex}) => {
-    // this.setState(({tasklist}) => ({
-    //   tasklist: arrayMove(tasklist, oldIndex, newIndex),
-    // }));
-
-    // get the task list from the local storage
-    let tasklist = JSON.parse(localStorage.getItem("tasklist"));
-    // remove the task from the task list
-    tasklist = arrayMove(tasklist, oldIndex, newIndex);
-    // save the updated task list
-    localStorage.setItem("tasklist", JSON.stringify(tasklist));
-    // refresh the task list
-    this.getTasks();
-  };
   render() {
     return (
       <div className="todo-list">
@@ -191,7 +157,6 @@ class TodoList extends Component {
         <div className="app-form">
           <form onSubmit={this.onSubmit} className="todo-form">
             <input
-              ref={(input) => { this.taskInput = input; }}
               type="text"
               name="task"
               onChange={this.onChange}
@@ -204,9 +169,7 @@ class TodoList extends Component {
           </form>
         </div>
         <div>
-          <div className="task-list">
-            <SortableList items={this.state.tasklist} onSortEnd={this.onSortEnd} useDragHandle />
-          </div>
+          <div className="task-list">{this.state.tasklist}</div>
         </div>
       </div>
     );
