@@ -1,7 +1,32 @@
 .App {
+  position: relative;
   display: flex;
   flex-direction: row;
   color: white;
+}
+
+.setting-checkbox-container {
+  display: flex;
+  padding: 10px 0;
+}
+
+header {
+  position: absolute;
+  min-height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: grey;
+  opacity: 0;
+  z-index: 3;
+}
+
+header:hover {
+  opacity: 1;
+  animation: fade-in-down 0.2s forwards;
 }
 
 .section {
@@ -34,22 +59,12 @@ p {
   margin: 0;
 }
 
-.setting-checkbox-container {
-  display: flex;
-}
-
-footer {
-  position: absolute;
-  padding: 10px;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  color: grey;
-}
-
 @media only screen and (max-width: 600px) {
   .App {
     flex-direction: column;
+  }
+  header {
+    display: none;
   }
   .section {
     width: 100%;
@@ -69,5 +84,16 @@ footer {
     position: relative;
     z-index: 1;
     left: 0;
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

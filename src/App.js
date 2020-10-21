@@ -17,17 +17,10 @@ class App extends Component {
     const { isSettingsOpen, isShowingSchedule } = this.state;
     return (
       <div className="App">
-        <section className="section section-one">
-          <Clock />
-          {isShowingSchedule && <Schedule />}
-        </section>
-        <section className="section section-two">
-          <TodoList />
-        </section>
-        <footer>
-          <p onClick={() => this.setState({ isSettingsOpen: !isSettingsOpen })}>Settings</p>
+        <header>
           {isSettingsOpen && (
             <div className="setting-checkbox-container">
+              <label for="is-showing-shedule">Show Schedule</label>
               <input
                 type="checkbox"
                 id="is-showing-shedule"
@@ -35,11 +28,18 @@ class App extends Component {
                 onClick={() => this.setState({
                   isShowingSchedule: !isShowingSchedule
                 })}
-                />
-              <label for="is-showing-shedule">Show Schedule</label>
+              />
             </div>
           )}
-        </footer>
+          <i className="fas fa-cog" onClick={() => this.setState({ isSettingsOpen: !isSettingsOpen })}></i>
+        </header>
+        <section className="section section-one">
+          <Clock />
+          {isShowingSchedule && <Schedule />}
+        </section>
+        <section className="section section-two">
+          <TodoList />
+        </section>
       </div>
     );
   }

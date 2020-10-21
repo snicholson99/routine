@@ -9,13 +9,13 @@
 }
 
 .todo-input {
-  width: calc(70% - 10px);
+  width: 70%;
   padding: 6px 10px;
   margin: 0;
 }
 
 .todo-submit {
-  width: calc(30% - 10px);
+  width: 30%;
   margin: 0;
   padding: 6px 10px;
 }
@@ -25,12 +25,16 @@
   padding: 0;
 }
 
-.task {
-  padding: 20px;
-  box-shadow: 2px 2px 0px grey;
+.task-header {
+  display: flex;
+  justify-content: center;
 }
 
-.task:not(:last-child) {
+.task {
+  padding: 20px;
+}
+
+.task:not(last-child) {
   border-bottom: 1px solid black;
 }
 
@@ -39,9 +43,18 @@
   align-items: baseline;
 }
 
+.task-header .drag-handle {
+  cursor: grab;
+  color: grey;
+}
+
+.task-header .drag-handle:active {
+  cursor: grabbing;
+}
+
 .task-body {
   font-size: 14px;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .task-options {
@@ -51,7 +64,19 @@
 }
 
 .task-option {
-  font-size: 10px;
+  opacity: 0;
+  font-size: 14px;
+  color: grey;
+  cursor: pointer;
+}
+
+.task:hover .task-option {
+  opacity: 1;
+  animation: fade-in-up 0.2s forwards;
+}
+
+.task-option:hover {
+  color: black;
 }
 
 .task-option:not(:last-child) {
@@ -65,5 +90,22 @@
 
   .todo-input, .todo-submit {
     width: 100%;
+  }
+
+  .task .task-option {
+    opacity: 1;
+    color: black;
+  }
+}
+
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

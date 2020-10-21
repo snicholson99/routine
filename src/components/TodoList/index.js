@@ -4,7 +4,7 @@ import { sortableContainer, sortableElement, sortableHandle } from 'react-sortab
 
 import "./style.css";
 
-const DragHandle = sortableHandle(() => <span>::</span>);
+const DragHandle = sortableHandle(() => <i className="drag-handle task-option fas fa-grip-lines"></i>);
 
 const SortableItem = sortableElement(({value}) => <li>{value}</li>);
 
@@ -112,18 +112,22 @@ class TodoList extends Component {
           }
           return (
             <div key={index} className="task" style={cardStyle}>
+              {tasklist.length > 1 && (
+                <div className="task-header">
+                  <DragHandle />
+                </div>
+              )}
               <div className="task-main">
-                <DragHandle />
                 <p className="task-body" style={taskComplete}>{item.task}</p>
               </div>
 
               <div className="task-options">
                 {item.status ? (
-                  <p className="task-option" onClick={() => this.undoTask(index)}>Undo</p>
+                  <i className="task-option fas fa-undo" onClick={() => this.undoTask(index)}></i>
                 ):(
-                  <p className="task-option" onClick={() => this.updateTask(index)}>Done</p>
+                  <i className="task-option fas fa-check" onClick={() => this.updateTask(index)}></i>
                 )}
-                <p className="task-option" onClick={() => this.deleteTask(index)}>Delete</p>
+                <i className="task-option fas fa-trash-alt" onClick={() => this.deleteTask(index)} alt="delete"></i>
               </div>
             </div>
           );
