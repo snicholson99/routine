@@ -1,0 +1,12 @@
+.notes {
+  width: 80%;
+  max-width: 400px;
+}
+
+.notes-input {
+  width: 100%;
+  background-color: lemonchiffon;
+  padding: 10px;
+  min-height: 30vh;
+  font-size: 14px;
+}

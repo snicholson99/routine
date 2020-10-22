@@ -1,0 +1,19 @@
+.settings {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #A4A4A4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.settings-icon,
+.settings-checkbox-container input,
+.settings-checkbox-container label {
+  cursor: pointer;
+}
+
+.settings-checkbox-container {
+  display: flex;
+}
