@@ -5,8 +5,10 @@
 
 .notes-input {
   width: 100%;
-  background-color: lemonchiffon;
+  background-color: #1E1E1E;
   padding: 10px;
   min-height: 30vh;
   font-size: 14px;
+  border: none;
+  color: white;
 }
