@@ -35,10 +35,13 @@ header.hover-to-show:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1 1 auto;
 }
 
 .section-one {
-  position: fixed;
+  resize: horizontal;
+  overflow: auto;
+  position: relative;
   background-color: #0F0F0F;
   /* border-right: 1px solid rgb(30, 30, 30); */
   order: 1;
@@ -47,7 +50,6 @@ header.hover-to-show:hover {
 .section-two {
   position: relative;
   top: 0;
-  left: 50%;
   background-color: #131313;
   order: 2;
 }
@@ -61,15 +63,13 @@ p {
   .App {
     flex-direction: column;
   }
-  /* header {
-    display: none;
-  } */
   .section {
     width: 100%;
     position: relative;
     padding: 30px 0;
   }
   .section-one {
+    resize: none;
     padding: 20px 0;
     min-height: unset;
     top: 100px;
