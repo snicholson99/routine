@@ -7,6 +7,7 @@ class Notes extends Component {
     super(props);
     this.state = {
       notes: localStorage.getItem("notes") ? JSON.parse(localStorage.getItem("notes")) : "",
+      isShowingCopiedText: false,
     };
   }
 
@@ -17,7 +18,18 @@ class Notes extends Component {
     });
   };
 
+  onCopyToClipboardClick = () => {
+    navigator.clipboard.writeText(this.state.notes);
+    this.setState({ isShowingCopiedText: true }, () => {
+      setTimeout(() => {
+        this.setState({ isShowingCopiedText: false });
+      }, 4000);
+    })
+  }
+
   render() {
+    const { onChange, onCopyToClipboardClick } = this;
+    const { notes, isShowingCopiedText } = this.state;
     return (
       <div className="notes">
         <div>
@@ -26,12 +38,28 @@ class Notes extends Component {
         <textarea
           type="text"
           name="notes"
-          onChange={(e) => this.onChange(e.target.value)}
-          value={this.state.notes}
+          onChange={(e) => onChange(e.target.value)}
+          value={notes}
           placeholder="Notes"
           autoComplete="off"
           className="notes-input"
         />
+        <div className="notes-copy-flex-container">
+          <div className="notes-copy-inner-container" onClick={onCopyToClipboardClick}>
+            <i className="notes-copy-icon fas fa-clipboard"></i>
+            <p className="notes-copy-label">Copy to Clipboard</p>
+          </div>
+          {isShowingCopiedText && (
+            <>
+              {notes.length > 25 ? (
+                <p className="notes-copied-text">Copied "<span>{notes.substring(0, 24) + "..."}</span>" to clipboard</p>
+              ) :
+              (
+                <p className="notes-copied-text">Copied "<span>{notes}</span>" to clipboard</p>
+              )}
+            </>
+          )}
+        </div>
       </div>
     );
   }
