@@ -68,7 +68,7 @@ class Notes extends Component {
                 )}
             </>
           )}
-          {isShowingNothingToCopy && <p className="notes-copied-text">There is nothing in Notes to copy!</p>}
+          {isShowingNothingToCopy && <p className="notes-copied-text">There is nothing to copy!</p>}
         </div>
       </div>
     );
