@@ -8,6 +8,7 @@ class Notes extends Component {
     this.state = {
       notes: localStorage.getItem("notes") ? JSON.parse(localStorage.getItem("notes")) : "",
       isShowingCopiedText: false,
+      isShowingNothingToCopy: false,
     };
   }
 
@@ -19,17 +20,25 @@ class Notes extends Component {
   };
 
   onCopyToClipboardClick = () => {
-    navigator.clipboard.writeText(this.state.notes);
-    this.setState({ isShowingCopiedText: true }, () => {
-      setTimeout(() => {
-        this.setState({ isShowingCopiedText: false });
-      }, 4000);
-    })
+    if (this.state.notes.length < 1) {
+      this.setState({ isShowingNothingToCopy: true }, () => {
+        setTimeout(() => {
+          this.setState({ isShowingNothingToCopy: false });
+        }, 4000);
+      });
+    } else {
+      navigator.clipboard.writeText(this.state.notes);
+      this.setState({ isShowingCopiedText: true }, () => {
+        setTimeout(() => {
+          this.setState({ isShowingCopiedText: false });
+        }, 4000);
+      });
+    }
   }
 
   render() {
     const { onChange, onCopyToClipboardClick } = this;
-    const { notes, isShowingCopiedText } = this.state;
+    const { notes, isShowingCopiedText, isShowingNothingToCopy } = this.state;
     return (
       <div className="notes">
         <div>
@@ -56,9 +65,10 @@ class Notes extends Component {
               ) :
               (
                 <p className="notes-copied-text">Copied "<span>{notes}</span>" to clipboard</p>
-              )}
+                )}
             </>
           )}
+          {isShowingNothingToCopy && <p className="notes-copied-text">There is nothing in Notes to copy!</p>}
         </div>
       </div>
     );
