@@ -6,28 +6,20 @@ class Notes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: localStorage.getItem("notes") ? JSON.parse(localStorage.getItem("notes")) : "",
       isShowingCopiedText: false,
       isShowingNothingToCopy: false,
     };
   }
 
-  onChange = (value) => {
-    this.setState({ notes: value }, () => {
-      // save the notes in the local storage
-      localStorage.setItem("notes", JSON.stringify(value));
-    });
-  };
-
   onCopyToClipboardClick = () => {
-    if (this.state.notes.length < 1) {
+    if (this.props.notes.length < 1) {
       this.setState({ isShowingNothingToCopy: true }, () => {
         setTimeout(() => {
           this.setState({ isShowingNothingToCopy: false });
         }, 4000);
       });
     } else {
-      navigator.clipboard.writeText(this.state.notes);
+      navigator.clipboard.writeText(this.props.notes);
       this.setState({ isShowingCopiedText: true }, () => {
         setTimeout(() => {
           this.setState({ isShowingCopiedText: false });
@@ -37,8 +29,9 @@ class Notes extends Component {
   }
 
   render() {
-    const { onChange, onCopyToClipboardClick } = this;
-    const { notes, isShowingCopiedText, isShowingNothingToCopy } = this.state;
+    const { onCopyToClipboardClick } = this;
+    const { notes, onNotesChange } = this.props;
+    const { isShowingCopiedText, isShowingNothingToCopy } = this.state;
     return (
       <div className="notes">
         <div>
@@ -47,7 +40,7 @@ class Notes extends Component {
         <textarea
           type="text"
           name="notes"
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onNotesChange(e.target.value)}
           value={notes}
           placeholder="Notes"
           autoComplete="off"
