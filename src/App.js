@@ -69,13 +69,13 @@ class App extends Component {
           />
         </header>
         <section className="section section-one">
+          <TodoList />
+        </section>
+        <section className="section section-two">
           <Notes
             notes={notesList[activeTabIndex] ? notesList[activeTabIndex] : ""}
             onNotesChange={onNotesChange}
           />
-        </section>
-        <section className="section section-two">
-          <TodoList />
         </section>
       </div>
     );

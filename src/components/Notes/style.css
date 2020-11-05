@@ -1,9 +1,11 @@
 .notes {
+  height: 100%;
   width: 80%;
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .notes-input {
+  height: calc(100% - 30px);
   width: 100%;
   background-color: #1E1E1E;
   padding: 10px;
@@ -26,7 +28,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: grey;
+  color: #A4A4A4;
 }
 
 .notes-copy-inner-container:hover {

@@ -1,6 +1,8 @@
 .todo-list {
+  position: relative;
+  height: 100%;
   width: 80%;
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .todo-form {
@@ -8,21 +10,33 @@
   padding-bottom: 10px;
 }
 
+.todo-input,
+.todo-submit {
+  border: none;
+}
+
 .todo-input {
-  width: 70%;
-  padding: 6px 10px;
+  flex: 1 1 auto;
+  padding: 8px 10px;
   margin: 0;
 }
 
 .todo-submit {
-  width: 30%;
+  flex: 0 1 100px;
+  background-color: #A4A4A4;
   margin: 0;
-  padding: 6px 10px;
+  padding: 8px 10px;
+}
+
+.task-list {
+  height: 100%;
 }
 
 .task-list ul {
   list-style-type: none;
   padding: 0;
+  height: 100%;
+  overflow: auto;
 }
 
 .task-header {
@@ -31,7 +45,7 @@
 }
 
 .task {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .task:not(last-child) {
@@ -90,6 +104,11 @@
 
   .todo-input, .todo-submit {
     width: 100%;
+    flex: none;
+  }
+
+  .task-list ul {
+    overflow: unset;
   }
 
   .task .task-option {

@@ -17,6 +17,7 @@ header {
   align-items: center;
   background-color: #1E1E1E;
   z-index: 3;
+  box-shadow: 2px 2px black;
 }
 
 header.hover-to-show {
@@ -28,20 +29,19 @@ header.hover-to-show:hover {
 }
 
 .section {
-  min-height: 100vh;
+  overflow: auto;
   width: 50%;
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   flex: 1 1 auto;
 }
 
 .section-one {
-  resize: horizontal;
-  overflow: auto;
   position: relative;
+  resize: horizontal;
   background-color: #0F0F0F;
   /* border-right: 1px solid rgb(30, 30, 30); */
   order: 1;
@@ -59,6 +59,13 @@ p {
   margin: 0;
 }
 
+@media only screen and (min-width: 601px) {
+  .section {
+    height: 100vh;
+    padding: 150px 0;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .App {
     flex-direction: column;
@@ -66,13 +73,12 @@ p {
   .section {
     width: 100%;
     position: relative;
+    top: 100px;
     padding: 30px 0;
   }
   .section-one {
     resize: none;
-    padding: 20px 0;
     min-height: unset;
-    top: 100px;
     left: 0;
     z-index: 2;
     border: none;

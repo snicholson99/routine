@@ -102,7 +102,7 @@ class TodoList extends Component {
         // Incomplete: black
         // complete: green
         tasklist: tasklist.map((item, index) => {
-          let cardStyle = { color: "black", background: "lightgrey" };
+          let cardStyle = { color: "black", background: "#A4A4A4" };
           let taskComplete = { textDecoration: "none" };
 
           if (item.status) {
@@ -207,11 +207,11 @@ class TodoList extends Component {
             <button className="todo-submit" type="submit">Create</button>
           </form>
         </div>
-        <div>
+        {/* <div> */}
           <div className="task-list">
             <SortableList items={this.state.tasklist} onSortEnd={this.onSortEnd} useDragHandle />
           </div>
-        </div>
+        {/* </div> */}
       </div>
     );
   }

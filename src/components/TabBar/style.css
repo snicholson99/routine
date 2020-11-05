@@ -9,23 +9,22 @@
 .tab {
   background-color: #1E1E1E;
   padding: 5px 10px;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  /* border-right: 1px solid black; */
+  /* border-bottom: 1px solid black; */
+  box-shadow: 2px 2px black;
   cursor: pointer;
 }
 
 .tab.active {
-  background-color: #1E1E3D;
-}
-
-.tab:nth-of-type(1) {
-  border-left: 1px solid black;
+  background-color: #A4A4A4;
+  color: black;
 }
 
 .tab-create {
   background-color: #1E1E1E;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  box-shadow: 2px 2px black;
+  /* border-right: 1px solid black;
+  border-bottom: 1px solid black; */
   padding: 5px 10px;
   display: flex;
   justify-content: center;
